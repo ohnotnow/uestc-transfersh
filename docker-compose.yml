@@ -2,11 +2,15 @@ services:
     transfersh:
         image: dutchcoders/transfer.sh:v1.6.1
         command: ["--listener=8080", "--provider=local", "--basedir=/tmp", "--purge-days=20", "--purge-interval=5"]
+        environment:
+            - HTTP_AUTH_USER=${HTTP_AUTH_USER:-username}
+            - HTTP_AUTH_PASS=${HTTP_AUTH_PASS:-secretpassword}
+
     proxy:
         image: caddy:2
         ports:
             - "80:80"
-            - "443:443"
+            # - "443:443"
         volumes:
           - ${PWD}/caddy/conf:/etc/caddy
           - ${PWD}/caddy/data:/data

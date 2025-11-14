@@ -1,2 +1,5 @@
 caddy/data/*
 !caddy/data/.gitkeep
+storage/*
+!storage/.gitkeep
+
